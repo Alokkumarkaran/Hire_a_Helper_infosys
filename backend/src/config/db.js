@@ -1,0 +1,1 @@
+/* Mongoose connect is done in server.js */

@@ -1,0 +1,103 @@
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Left Image */
+.auth-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.auth-left img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+}
+
+/* Right Form */
+.auth-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo img {
+  width: 32px;
+  height: 32px;
+}
+.logo h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: #0d9488;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.btn-primary:hover {
+  background: #0f766e;
+}
+
+.error {
+  color: crimson;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-align: center;
+}
