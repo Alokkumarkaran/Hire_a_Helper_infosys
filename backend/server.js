@@ -42,7 +42,7 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI.VITE_BACKEND_URL)
   .then(() => {
     console.log('MongoDB connected');
     server.listen(PORT, () => console.log('Server running on ' + PORT));

@@ -6,86 +6,98 @@ import "./style/MyRequests.css";
 const API_BASE = "http://localhost:8000";
 
 export default function MyRequests() {
-  const [list, setList] = useState([]);
+  const [requests, setRequests] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await api.get("/requests/mine");
-        setList(data);
+        setRequests(data || []);
       } catch (err) {
         console.error("Error loading requests", err);
       }
     })();
   }, []);
 
+  function buildImageUrl(picture) {
+    if (!picture) return null;
+    if (picture.startsWith("http://") || picture.startsWith("https://"))
+      return picture;
+    return `${API_BASE}/uploads/${picture}`;
+  }
+
   return (
     <div>
       <Topbar />
-      <div className="my-requests-container">
-        <h2 className="page-title">My Requests</h2>
+      <div className="topbar">
+        <h2>My Requests</h2>
+      </div>
 
-        {list.length === 0 ? (
+      <div className="task-list">
+        {requests.length === 0 ? (
           <p className="empty-text">No requests found.</p>
         ) : (
-          <div className="requests-list">
-            {list.map((r) => {
-              const owner = r.taskId?.userId; // Task owner
+          requests.map((r) => {
+            const task = r.taskId || {};
+            const taskImage = buildImageUrl(task.picture);
 
-              return (
-                <div key={r._id} className="request-card">
-                  <div className="request-header">
-                    {/* Avatar */}
-                    <div className="avatar">
-                      {owner?.profilePicture ? (
-                        <img
-                          src={`${API_BASE}/uploads/${owner.profilePicture}`}
-                          alt={`${owner.firstName}'s avatar`}
-                          className="avatar-img"
-                        />
-                      ) : (
-                        <span>{owner?.firstName?.[0]?.toUpperCase() || "U"}</span>
-                      )}
-                    </div>
+            return (
+              <div key={r._id} className="task-card">
+                {/* Image */}
+                <div className="task-image">
+                  {taskImage ? (
+                    <img src={taskImage} alt={task.title} />
+                  ) : (
+                    <span>No Image</span>
+                  )}
+                </div>
 
-                    {/* Owner info */}
-                    <div className="owner-info">
-                      <h3 className="task-title">
-                        {r.taskId?.title || "Untitled Task"}{" "}
-                        <span className="tag">{r.taskId?.category || "general"}</span>
-                      </h3>
-                      <p className="task-owner">
-                        Owner: {owner ? `${owner.firstName} ${owner.lastName}` : "Unknown"}
-                      </p>
-                      <p className="task-owner-email">{owner?.email || "—"}</p>
-                    </div>
-
-                    <span className={`status-badge ${r.status}`}>{r.status}</span>
+                {/* Content */}
+                <div className="task-content">
+                  {/* Tags */}
+                  <div className="task-tags">
+                    <span className="tag category">
+                      {task.category || "general"}
+                    </span>
+                    <span className={`tag status ${r.status?.toLowerCase()}`}>
+                      {r.status || "pending"}
+                    </span>
                   </div>
 
-                  {/* User message */}
-                  {r.message && (
-                    <div className="message-box">
-                      <b>Your message:</b> {r.message}
-                    </div>
-                  )}
+                  {/* Title */}
+                  <h3>Task Name: {task.title || "Untitled"}</h3>
+
+                  {/* Description */}
+                  <p className="desc">{task.description || "No description"}</p>
 
                   {/* Footer */}
-                  <div className="request-footer">
-                    <span>📅 {r.taskId?.date || "—"}</span>
-                    <span>📍 {r.taskId?.location || "—"}</span>
+                  <div className="task-footer">
+                    <p>📍 {task.location || "No location"}</p>
+                    <p>
+                      📅{" "}
+                      {task.startTime
+                        ? new Date(task.startTime).toLocaleDateString()
+                        : "No Date"}{" "}
+                      – 🕒{" "}
+                      {task.startTime
+                        ? new Date(task.startTime).toLocaleTimeString()
+                        : "—"}
+                      {task.endTime
+                        ? ` - ${new Date(task.endTime).toLocaleTimeString()}`
+                        : ""}
+                    </p>
                   </div>
 
-                  {/* Task image */}
-                  {r.taskId?.image && (
-                    <div className="request-image">
-                      <img src={r.taskId.image} alt="task" />
+                  {/* User’s message */}
+                  {r.message && (
+                    <div className="user-message">
+                      <strong>Your message:</strong> {r.message}
                     </div>
                   )}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })
         )}
       </div>
     </div>

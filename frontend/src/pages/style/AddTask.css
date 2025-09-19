@@ -1,0 +1,114 @@
+.addtask-page {
+  width: 100%; /* full width */
+  max-width: none; /* remove 700px max-width */
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.addtask-header {
+  text-align: left; /* align title to left */
+  margin-bottom: 20px;
+}
+
+.addtask-header h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 0; /* remove extra spacing */
+}
+
+.form-msg {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.form-msg:empty {
+  display: none;
+}
+
+.form-msg:contains("✅") {
+  background: #e6f9ef;
+  color: #0b8a42;
+}
+
+.form-msg:contains("❌"), 
+.form-msg:contains("⚠️") {
+  background: #fff6e6;
+  color: #b36b00;
+}
+
+.addtask-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  width: 100%; /* full width of container */
+  box-sizing: border-box; /* include padding in width */
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.task-form input,
+.task-form textarea {
+  margin-top: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border 0.2s ease;
+}
+
+.task-form input:focus,
+.task-form textarea:focus {
+  outline: none;
+  border-color: #0056d6;
+  box-shadow: 0 0 4px rgba(0, 86, 214, 0.3);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row label {
+  flex: 1;
+}
+
+.file-upload input {
+  margin-top: 6px;
+}
+
+.btn-submit {
+  background: #0056d6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #0041a8;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}

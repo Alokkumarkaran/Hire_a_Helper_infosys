@@ -6,7 +6,10 @@
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 16px;
+  text-align: left;   /* ✅ force text to left */
+  display: block;     /* ✅ makes sure it respects alignment */
 }
+
 
 .status-msg {
   color: green;
