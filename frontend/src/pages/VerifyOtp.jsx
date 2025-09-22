@@ -37,8 +37,7 @@ export default function VerifyOtp() {
     <div className="otp-container">
       <div className="otp-card">
         <div className="otp-header">
-          <img src="/logo.png" alt="Hire-a-Helper" className="otp-logo" />
-          <h2>Hire-a-Helper</h2>
+          <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
         </div>
 
         <h3>Enter OTP</h3>

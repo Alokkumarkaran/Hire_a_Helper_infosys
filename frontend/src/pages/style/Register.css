@@ -45,6 +45,11 @@
   width: 32px;
   height: 32px;
 }
+.otp-logo {
+  height: 60px;
+  width: auto; /* keeps aspect ratio */
+  margin-bottom: 12px;
+}
 .logo h1 {
   font-size: 20px;
   font-weight: 600;

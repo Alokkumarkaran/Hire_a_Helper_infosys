@@ -32,15 +32,14 @@ export default function Register() {
     <div className="register-container">
       {/* Left side with image */}
       <div className="register-left">
-        <img src="/src/pages/Hire_Helper.png" alt="Welcome banner" />
+        <img src="./Hire_Helper.png" alt="Welcome banner" />
       </div>
 
       {/* Right side with form */}
       <div className="register-right">
         <div className="form-card">
-          <div className="logo">
-            <img src="/logo.png" alt="logo" />
-            <h1>Hire-a-Helper</h1>
+          <div className="otp-header">
+          <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
           </div>
           <h2>Sign up</h2>
           <p>Enter your details to sign up</p>

@@ -32,15 +32,14 @@ export default function Login() {
     <div className="login-container">
       {/* Left illustration */}
       <div className="login-left">
-        <img src="/src/pages/Hire_Helper.png" alt="Welcome back" />
+        <img src="./Hire_Helper.png" alt="Welcome back" />
       </div>
 
       {/* Right form */}
       <div className="login-right">
         <div className="form-card">
-          <div className="logo">
-            <img src="/src/pages/logo.png" alt="logo" />
-            <h1>Hire-a-Helper</h1>
+           <div className="otp-header">
+          <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
           </div>
           <h2>Sign in</h2>
           <p>Enter your credentials to access your account</p>

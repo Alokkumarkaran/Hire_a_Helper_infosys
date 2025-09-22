@@ -26,15 +26,14 @@ export default function ForgotPassword() {
     <div className="auth-container">
       {/* Left Illustration */}
       <div className="auth-left">
-        <img src="/src/pages/Hire_Helper.png" alt="Forgot Password" />
+        <img src="./Hire_Helper.png" alt="Forgot Password" />
       </div>
 
       {/* Right Form */}
       <div className="auth-right">
         <div className="form-card">
-          <div className="logo">
-            <img src="/logo.png" alt="logo" />
-            <h1>Hire-a-Helper</h1>
+          <div className="otp-header">
+          <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
           </div>
 
           <h2>Forgot Password?</h2>
