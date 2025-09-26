@@ -24,7 +24,20 @@ function Sidebar(){
       <Link to="/app/my-requests">My Requests</Link>
       <Link to="/app/add-task">Add Task</Link>
       <Link to="/app/settings">Settings</Link>
-      <a href="#" onClick={()=>{logout(); window.location.href='/'}}>Logout</a>
+      <a
+  href="#"
+  onClick={() => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      logout();                     
+      window.location.replace("/"); 
+    }
+  }}
+>
+  Logout
+</a>
+
+
     </div>
   )
 }

@@ -162,14 +162,18 @@ export default function Topbar() {
       <hr className="th-sep" />
       <a className="th-dd-link" href="/app/settings">Settings</a>
       <button
-        className="th-dd-link th-logout"
-        onClick={() => {
-          localStorage.clear();
-          window.location.href = "/";
-        }}
-      >
-        Logout
-      </button>
+  className="th-dd-link th-logout"
+  onClick={() => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.clear();
+      window.location.replace("/"); // use replace so back button won’t reload old page
+    }
+  }}
+>
+  Logout
+</button>
+
     </div>
   )}
 </div>
