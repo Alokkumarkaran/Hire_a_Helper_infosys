@@ -7,6 +7,8 @@ import { sendOtpEmail } from '../utils/sendOtp.js';
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
+  console.log('--- register called ---');
+  console.log('body:', req.body); // <- This will print request payload
   try {
     const { firstName, lastName, email, password, phoneNumber } = req.body;
     const exists = await User.findOne({ email });
