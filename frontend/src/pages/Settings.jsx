@@ -134,35 +134,46 @@ export default function Settings() {
   return (
     <div>
       <Topbar />
-      <h2>Settings</h2>
 
       <div className="settings-container">
         {msg && <div className="alert success">{msg}</div>}
         {err && <div className="alert error">{err}</div>}
 
         {/* Profile Section */}
-        <div className="profile-section">
-          <div className="profile-left">
-            <img
-              src={
-                previewUrl ||
-                (u.profilePicture ? `${API_BASE}${u.profilePicture}` : "https://via.placeholder.com/100?text=User")
-              }
-              alt="Profile"
-              className="profile-img"
-            />
-          </div>
+<div className="profile-section">
+  <div className="profile-left">
+    {previewUrl ? (
+      <img src={previewUrl} alt="Profile" className="profile-img" />
+    ) : u.profilePicture ? (
+      <img src={`${API_BASE}${u.profilePicture}`} alt="Profile" className="profile-img" />
+    ) : u.firstName ? (
+      <div className="profile-placeholder">
+        {u.firstName.charAt(0).toUpperCase()}
+      </div>
+    ) : (
+      <img
+        src="https://via.placeholder.com/100?text=User"
+        alt="Profile"
+        className="profile-img"
+      />
+    )}
+  </div>
 
-          <div className="profile-actions">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/png,image/jpeg"
-              style={{ display: "none" }}
-              onChange={onFileChange}
-            />
-            <button onClick={openFilePicker} disabled={uploading}>Change Photo</button>
-            <button onClick={removePhoto} disabled={uploading}>Remove</button>
+  <div className="profile-actions">
+    <input
+      ref={fileInputRef}
+      type="file"
+      accept="image/png,image/jpeg"
+      style={{ display: "none" }}
+      onChange={onFileChange}
+    />
+    <button onClick={openFilePicker} disabled={uploading}>
+      Change Photo
+    </button>
+    <button onClick={removePhoto} disabled={uploading}>
+      Remove
+    </button>
+
 
             {selectedFile && (
               <div>

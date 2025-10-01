@@ -12,6 +12,7 @@ export default function Register() {
     password: "",
     phoneNumber: "",
   });
+  const [popup, setPopup] = useState(""); // popup message
   const [msg, setMsg] = useState("");
   const nav = useNavigate();
 
@@ -21,8 +22,14 @@ export default function Register() {
     try {
       const { data } = await api.post("/auth/register", form);
       saveUserId(data.userId);
-      setMsg("Registered. Check email/console for OTP.");
-      nav("/verify-otp");
+
+      // Show popup with email
+      setPopup(`OTP sent to ${form.email}`);
+
+      // Redirect to OTP page after short delay
+      setTimeout(() => {
+        nav("/verify-otp");
+      }, 2000);
     } catch (err) {
       setMsg("Error: " + (err.response?.data?.message || "Something went wrong"));
     }
@@ -39,7 +46,7 @@ export default function Register() {
       <div className="register-right">
         <div className="form-card">
           <div className="otp-header">
-          <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
+            <img src="./logo.png" alt="Hire-a-Helper" className="otp-logo" />
           </div>
           <h2>Sign up</h2>
           <p>Enter your details to sign up</p>
@@ -101,14 +108,22 @@ export default function Register() {
               Sign up
             </button>
 
-            
-
             <p className="signin-link">
               Already have an account? <a href="/">Sign in</a>
             </p>
           </form>
         </div>
       </div>
+
+      {/* OTP Popup */}
+      {popup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <p>{popup}</p>
+            <button onClick={() => setPopup("")}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

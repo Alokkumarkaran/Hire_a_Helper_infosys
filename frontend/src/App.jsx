@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'   // ✅ added useState here
 import { Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -14,10 +14,42 @@ import MyRequests from './pages/MyRequests'
 import Settings from './pages/Settings'
 import { getToken, logout } from './services/auth'
 
+// 🔹 Custom Logout Popup Component
+function LogoutPopup({ onConfirm, onCancel }) {
+  return (
+    <div className="popup-overlay">
+      <div className="popup-box">
+        <h3>Confirm Logout</h3>
+        <p>Are you sure you want to log out of your account?</p>
+        <div className="popup-actions">
+          <button className="btn-confirm" onClick={onConfirm}>
+            Yes, Logout
+          </button>
+          <button className="btn-cancel" onClick={onCancel}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Sidebar(){
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false); // ✅ works now
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    setShowLogoutPopup(false);
+    // Optional: small delay before redirect for smooth UX
+    setTimeout(() => navigate("/"), 500);
+  };
+
   return (
     <div className="sidebar">
-      <h2>HireHelper</h2>
+      <div className="sidebar-logo" onClick={() => navigate("/app")}>
+      <img src="/hire_logo.png" alt="HireHelper Logo" />
+      </div>
       <Link to="/app/feed">Feed</Link>
       <Link to="/app/my-tasks">My Tasks</Link>
       <Link to="/app/requests">Requests</Link>
@@ -25,19 +57,21 @@ function Sidebar(){
       <Link to="/app/add-task">Add Task</Link>
       <Link to="/app/settings">Settings</Link>
       <a
-  href="#"
-  onClick={() => {
-    const confirmLogout = window.confirm("Are you sure you want to logout?");
-    if (confirmLogout) {
-      logout();                     
-      window.location.replace("/"); 
-    }
-  }}
->
-  Logout
-</a>
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          setShowLogoutPopup(true);
+        }}
+      >
+        Logout
+      </a>
 
-
+      {showLogoutPopup && (
+        <LogoutPopup
+          onConfirm={handleLogout}
+          onCancel={() => setShowLogoutPopup(false)}
+        />
+      )}
     </div>
   )
 }

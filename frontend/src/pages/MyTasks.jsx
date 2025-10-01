@@ -20,9 +20,6 @@ export default function MyTasks() {
   return (
     <div>
       <Topbar />
-      <div className="topbar">
-        <h2>My Tasks</h2>
-      </div>
       <div className="task-list">
         {tasks.map((t) => (
           <div key={t._id} className="task-card">
@@ -42,7 +39,6 @@ export default function MyTasks() {
             <div className="task-content">
               {/* Tags (category + status) */}
               <div className="task-tags">
-                <span className="tag category">tech</span>
                 <span className={`tag status ${t.status.toLowerCase()}`}>
                   {t.status}
                 </span>

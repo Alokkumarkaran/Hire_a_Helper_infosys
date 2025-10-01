@@ -36,7 +36,6 @@ export default function Feed() {
     <div>
       <Topbar />
       <div className="feed-container">
-        <h2 className="page-title">Feed</h2>
         {msg && <div className="status-msg">{msg}</div>}
 
         <div className="feed-list">
@@ -57,7 +56,7 @@ export default function Feed() {
               {/* Content */}
               <div className="feed-content">
                 <div className="feed-header">
-                  <span className="tag">{t.category || "general"}</span>
+
                   <span className="date">
                     {new Date(t.createdAt).toLocaleDateString()}
                   </span>

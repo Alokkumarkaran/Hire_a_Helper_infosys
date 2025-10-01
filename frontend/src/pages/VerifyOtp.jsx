@@ -5,8 +5,8 @@ import { getUserId, clearUserId } from "../services/auth";
 import "./style/VerifyOtp.css";
 
 export default function VerifyOtp() {
-  const [otp, setOtp] = useState(new Array(6).fill(""));  // 6 boxes
-  const [error, setError] = useState("");
+  const [otp, setOtp] = useState(new Array(6).fill("")); // 6 boxes
+  const [popup, setPopup] = useState(""); // popup message
   const nav = useNavigate();
 
   const handleChange = (element, index) => {
@@ -23,13 +23,21 @@ export default function VerifyOtp() {
 
   async function submit(e) {
     e.preventDefault();
-    setError("");
     try {
-      await api.post("/auth/verify-otp", { userId: getUserId(), code: otp.join("") });
+      await api.post("/auth/verify-otp", {
+        userId: getUserId(),
+        code: otp.join(""),
+      });
+
       clearUserId();
-      nav("/");
+      setPopup("✅ OTP verified successfully! You can now log in to your account.");
+
+      // redirect after 2 seconds
+      setTimeout(() => {
+        nav("/");
+      }, 2000);
     } catch (err) {
-      setError(err.response?.data?.error || "Verification failed");
+      setPopup("❌ Incorrect or expired OTP. Please enter the correct code and try again.");
     }
   }
 
@@ -42,8 +50,6 @@ export default function VerifyOtp() {
 
         <h3>Enter OTP</h3>
         <p>We have sent an OTP to your Email Id</p>
-
-        {error && <div className="otp-error">{error}</div>}
 
         <form onSubmit={submit}>
           <div className="otp-inputs">
@@ -66,9 +72,19 @@ export default function VerifyOtp() {
         </form>
 
         <p className="signin-link">
-              Already have an account? <a href="/">Sign in</a>
+          Already have an account? <a href="/">Sign in</a>
         </p>
       </div>
+
+      {/* ✅ Popup Modal */}
+      {popup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <p>{popup}</p>
+            <button onClick={() => setPopup("")}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

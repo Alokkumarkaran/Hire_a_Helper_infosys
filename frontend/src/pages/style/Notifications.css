@@ -1,0 +1,75 @@
+.th-notif-dropdown {
+  width: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 100;
+}
+
+.th-notif-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.th-notif-item.unread {
+  background-color: #f0f8ff;
+  border-left-color: #007bff;
+}
+
+.th-notif-item.read:hover {
+  background-color: #f9f9f9;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.notif-urgent {
+  color: red;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.notif-task-info {
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.notif-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.notif-user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.notif-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 5px;
+}
+
+.notif-unread-icon {
+  color: #007bff;
+}

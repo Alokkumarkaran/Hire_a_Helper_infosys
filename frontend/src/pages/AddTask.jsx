@@ -61,7 +61,6 @@ export default function AddTask() {
       <Topbar />
       <div className="addtask-page">
         <div className="addtask-header">
-          <h2>➕ Add a New Task</h2>
           {msg && <div className="form-msg">{msg}</div>}
         </div>
 

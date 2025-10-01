@@ -33,7 +33,6 @@ export default function Requests() {
   return (
     <div>
       <Topbar />
-      <div className="topbar"><h2>Requests (for my tasks)</h2></div>
 
       {list.length === 0 && <p className="no-requests">No requests received yet.</p>}
 

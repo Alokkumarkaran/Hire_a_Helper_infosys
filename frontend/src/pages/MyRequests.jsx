@@ -29,9 +29,6 @@ export default function MyRequests() {
   return (
     <div>
       <Topbar />
-      <div className="topbar">
-        <h2>My Requests</h2>
-      </div>
 
       <div className="task-list">
         {requests.length === 0 ? (
@@ -56,9 +53,6 @@ export default function MyRequests() {
                 <div className="task-content">
                   {/* Tags */}
                   <div className="task-tags">
-                    <span className="tag category">
-                      {task.category || "general"}
-                    </span>
                     <span className={`tag status ${r.status?.toLowerCase()}`}>
                       {r.status || "pending"}
                     </span>
